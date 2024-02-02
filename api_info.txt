@@ -1,0 +1,7 @@
+postman
+
+post request:
+https://www.strava.com/oauth/token?client_id=117917&client_secret=a830f572e6291e2f35635914b6a682eecbda64c1&refresh_token=44814352b23a3f285ded0ac457ceea5e0fdb1bcf&grant_type=refresh_token
+
+refresh token:
+44814352b23a3f285ded0ac457ceea5e0fdb1bcf

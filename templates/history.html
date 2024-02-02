@@ -1,0 +1,104 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Workout History
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        float: right; /* Align to the right side of the table */
+        margin-left: 10px; /* Adjust as needed for spacing */
+    }
+    .dropbtn {
+        padding: 8px 16px;
+        border: none;
+        background-color: #f9f9f9;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+    .dropbtn::after {
+        content: '\25BC'; /* Unicode character for down arrow */
+        margin-left: 5px; /* Adjust as needed */
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+    </style>
+    <h1>Entries</h1>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Exercise</th>
+                <th>Title</th>
+                <th>Time</th>
+                <th>Distance</th>
+                <th>Average HR</th>
+                <th>Max HR</th>
+            </tr>
+            <!-- TODO: Loop through the database entries to display them in this table using jinja -->
+            {% for workout in workouts %}
+            <tr>
+                <td>
+                    <select  name="options" id="workout">
+                    <optgroup>
+                        <option value="volvo">Edit</option>
+                        <option value="saab">Delete</option>
+                    </optgroup>
+                    </select>
+                </td>
+                <td>{{ workout[3] }}</td>
+                <td>{{ workout[1] }}</td>
+                <td>{{ workout[2] }}</td>
+                <td>{{ workout[4] }}</td>
+                <td>{{ workout[5] }}</td>
+                <td>{{ workout[6] }}</td>
+                <td>{{ workout[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown(this)"></button>
+        <div class="dropdown-content">
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleDropdown(button) {
+    var dropdownContent = button.nextElementSibling;
+    dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+}
+</script>
+
+{% endblock %}

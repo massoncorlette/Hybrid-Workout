@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Figma for template -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Web App Title</title>
+    <!-- Add your CSS links or styles here -->
+</head>
+
+<body>
+
+    <!-- Header section -->
+    <header>
+        <h1>Your Web App Name</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content section -->
+    <main class="container-fluid py-5 text-center">
+        {% block main %}{% endblock %}
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; 2023 Your Web App. All rights reserved.</p>
+    </footer>
+
+    <!-- Add your JavaScript scripts or links here -->
+</body>
+
+# for maybe when i can have additional users
+@app.route('/history')
+def history():
+
+    user_id = session["user_id"]
+
+    workouts = db.execute("SELECT * FROM workouts WHERE user_id = ?", (user_id,))
+
+    return render_template('history.html', workouts=workouts)
